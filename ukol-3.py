@@ -5,11 +5,13 @@ with open('body.json', encoding="utf-8") as hodnoceni:
 
 print(data)
 
-for jmeno in data:
-    if data[jmeno] >= 60:
-        data[jmeno] = ("Pass")
-    else:
-        data[jmeno] = ("Fail")
+znamky = {}
 
+for jmeno, body in data.items():
+    if body >= 60:
+        znamky[jmeno] = "Pass"
+    else:
+        znamky[jmeno] = "Fail"
+        
 with open("prospech.json", mode = "w", encoding = "utf-8") as file:
-    json.dump(data, file, ensure_ascii=False)
+    json.dump(znamky, file, ensure_ascii=False)
