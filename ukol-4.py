@@ -1,10 +1,10 @@
 import math
 
 def overeni(cislo):
-    if len(cislo) == 9:
+    if len(nove_cislo) == 9:
         cislo = True
-    elif len(cislo) == 13:
-        if cislo[0:4] == "+420":
+    elif len(nove_cislo) == 13:
+        if nove_cislo[0:4] == "+420":
             cislo = True
     else:
         cislo = False
@@ -12,6 +12,7 @@ def overeni(cislo):
     return cislo
 
 cislo = input("Zadej telefonní číslo: ")
+nove_cislo = cislo.replace(" ", "")
 
 if overeni(cislo) == True:
     text = input("Zadejte zprávu: ")
