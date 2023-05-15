@@ -6,28 +6,41 @@ class Auto:
         self.dostupne = True
 
     def pujc_auto(self):
-        self.dostupne = False
-    
-    def __str__(self):
         if self.dostupne:
             text = "Potvrzuji zapůjčení vozidla."
-        else:
+            self.dostupne = False
+        elif self.dostupne == False:
             text = "Vozidlo není k dispozici."
         return text
+        
     
     def get_info(self):
         return f"Vozidlo {self.registracni_znacka}, {self.typ_vozidla}."
+
+    def vrat_auto(self, stav_tach, dny):
+        self.najete_km = (self.najete_km + stav_tach)
+        self.dny = dny
+        self.dostupne = True
+        if self.dny < 7:
+            self.dny *= 400
+        else:
+            self.dny *= 300
+        return f"Cena za půjčení auta je {self.dny} Kč."
+        
+
     
 
-A1 = Auto("4A2 3020", "Peugeot 403 Cabrio",	"47534")
-A2 = Auto("1P3 4747", "Škoda Octavia", "41253")
+a1 = Auto("4A2 3020", "Peugeot 403 Cabrio",	47534)
+a2 = Auto("1P3 4747", "Škoda Octavia", 41253)
 znacka = input("Jakou značku si přejete, Peugeot nebo Škoda? ")
-#A1.pujc_auto()
-#A2.pujc_auto()
+#a1.pujc_auto()
+#a2.pujc_auto()
+#print(a1.vrat_auto(1000, 8))
+#print(a1.najete_km)
 
 if znacka == "Peugeot":
-    print(A1.get_info())
-    print(A1)
-else :
-    print(A2.get_info())
-    print(A2)
+    print(a1.get_info())
+    print(a1.pujc_auto())
+elif znacka == "Škoda":
+    print(a2.get_info())
+    print(a2.pujc_auto())
